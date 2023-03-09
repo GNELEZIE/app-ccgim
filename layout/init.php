@@ -39,12 +39,12 @@ include_once $class.'/Location.class.php';
 
 
 
-if(isset($_COOKIE['_ccgim_cookie']) AND !isset($_SESSION['_ccgim_201'])){
+if(isset($_COOKIE['_ccgim_cookie']) AND !isset($_SESSION['_ccgim_202'])){
     $user = my_decrypt($_COOKIE['_ccgim_cookie']);
     $result = $utilisateur->getUtilisateurByEmail($user);
     if($data = $result->fetch()){
         if($data['bloquer'] == 0){
-            $_SESSION['_ccgim_201'] = $data;
+            $_SESSION['_ccgim_202'] = $data;
         }else{
             setcookie('_ccgim_cookie',null,time()-60*60*24*30,'/',$cookies_domaine,true,true);
         }
@@ -53,12 +53,12 @@ if(isset($_COOKIE['_ccgim_cookie']) AND !isset($_SESSION['_ccgim_201'])){
     }
 }
 
-if(isset($_SESSION['_ccgim_201'])){
-    $data = $utilisateur->getUtilisateurById($_SESSION['_ccgim_201']['id_utilisateur'])->fetch();
+if(isset($_SESSION['_ccgim_202'])){
+    $data = $utilisateur->getUtilisateurById($_SESSION['_ccgim_202']['id_utilisateur'])->fetch();
     if($data['bloquer'] != 0){
         if(isset($_COOKIE['_ccgim_cookie'])) {
             setcookie('_ccgim_cookie',null,time()-60*60*24*30,'/',$cookies_domaine,true,true);
         }
-        unset($_SESSION['_ccgim_201']);
+        unset($_SESSION['_ccgim_202']);
     }
 }

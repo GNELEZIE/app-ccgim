@@ -97,7 +97,7 @@ include_once $layout.'/auth/header.php'?>
                         <select class="wide form-control input-style input-height select-maison" name="maison" id="maison" required>
                             <option value="" selected>Choisir une maison</option>
                             <?php
-                            $listLoc = $location->getLocationByLgts($_SESSION['_ccgim_201']['id_utilisateur']);
+                            $listLoc = $location->getLocationByLgts($_SESSION['_ccgim_202']['id_utilisateur']);
                             while($dataLocataire = $listLoc->fetch()){
                             ?>
                             <option value="<?=$dataLocataire['id_logement']?>"><?=html_entity_decode(stripslashes($dataLocataire['nom_lgt'])).'('.$dataLocataire['quartier_lgt'].')'?></option>

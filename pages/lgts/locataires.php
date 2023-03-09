@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['_ccgim_201'])){
+if(!isset($_SESSION['_ccgim_202'])){
     header('location:'.$domaine.'/connexion');
     exit();
 
@@ -79,7 +79,6 @@ include_once $layout.'/auth/header.php'?>
             </div>
         <?php
         }else{
-
         ?>
             <div class="row">
                 <div class="col-md-12">
@@ -156,7 +155,6 @@ include_once $layout.'/auth/header.php'?>
                                         $listePay = $tresorerie->getPaiementHistoByUser($dataLocat['id_utilisateur']);
                                         while($listePayData = $listePay->fetch()){
                                             ?>
-
                                             <tr>
                                                 <td><?=date_time_fr($listePayData['date_tresorerie'])?></td>
                                                 <td><?=$listePayData['ref_paiement']?></td>
@@ -172,7 +170,6 @@ include_once $layout.'/auth/header.php'?>
                                     </table>
                                 </div>
                             </div>
-
                             <div role="tabpanel" class="tab-pane fade" id="infos">
                                 <div class="row pd25 pInfo">
                                     <div class="col-md-6">
@@ -200,8 +197,6 @@ include_once $layout.'/auth/header.php'?>
 
     </div>
 </div>
-
-
 
 <!--Modal-->
 <div class="modal fade" id="payerModalCenter" tabindex="-1" role="dialog" aria-labelledby="payerModalCenterTitle" aria-hidden="true">
@@ -236,9 +231,6 @@ include_once $layout.'/auth/header.php'?>
     </div>
 </div>
 
-
-
-
 <div class="modal fade" id="addLocataireModalCenter" tabindex="-1" role="dialog" aria-labelledby="addLocataireModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -257,7 +249,7 @@ include_once $layout.'/auth/header.php'?>
                                 <select class="wide form-control input-style input-height40" name="lgt" id="lgt">
                                     <option  selected>Choisir un logement</option>
                                     <?php
-                                    $list =  $logement->getLogementByUserId($_SESSION['_ccgim_201']['id_utilisateur']);
+                                    $list =  $logement->getLogementByUserId($_SESSION['_ccgim_202']['id_utilisateur']);
                                     while($datLgts = $list->fetch()){
                                         ?>
                                         <option value="<?=$datLgts['id_logement']?>"><?=html_entity_decode(stripslashes($datLgts['nom_lgt']))?></option>
@@ -301,7 +293,6 @@ include_once $layout.'/auth/header.php'?>
                           <input class="form-control input-style input-height40" name="date" id="date" type="date"  placeholder="Date">
                       </div>
                   </div>-->
-
               </div>
                 </div>
                 <div class="modal-footer">

@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['_ccgim_201']) and isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['email']) and isset($_POST['ville']) and isset($_POST['phone']) and isset($_POST['contribuable'])  and isset($_SESSION['myformkey']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']) {
+if(isset($_SESSION['_ccgim_202']) and isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['email']) and isset($_POST['ville']) and isset($_POST['phone']) and isset($_POST['contribuable'])  and isset($_SESSION['myformkey']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']) {
     extract($_POST);
     $nom = htmlentities(trim(addslashes(strip_tags($nom))));
     $prenom = htmlentities(trim(addslashes(strip_tags($prenom))));
@@ -33,16 +33,16 @@ if(isset($_SESSION['_ccgim_201']) and isset($_POST['nom']) and isset($_POST['pre
     $rsSlug = $verifSlug->fetch();
     $nbSlug =$verifSlug->rowCount();
 
-    if($nbSlug > 0 AND $rsSlug['id_utilisateur'] != $_SESSION['_ccgim_201']['id_utilisateur']){
+    if($nbSlug > 0 AND $rsSlug['id_utilisateur'] != $_SESSION['_ccgim_202']['id_utilisateur']){
         $slug = $slug.'-'.$nbSlug;
     }
-    $dat = $utilisateur->getUtilisateurById($_SESSION['_ccgim_201']['id_utilisateur'])->fetch();
+    $dat = $utilisateur->getUtilisateurById($_SESSION['_ccgim_202']['id_utilisateur'])->fetch();
     if($dat['email'] != '' and $dat['email'] != $email){
         $errors['upd'] = 'Votre adresse email existe déjà';
     }else{
-        $upds = $utilisateur->updateData13($propriete1,$nom,$propriete2,$prenom,$propriete3,$email,$propriete4,$ville,$propriete5,$phone,$propriete6,$isoPhone,$propriete7,$dialPhone,$propriete8,$postale,$propriete9,$banque,$propriete10,$contribuable,$propriete11,$mecano,$propriete12,$service,$propriete13,$slug,$_SESSION['_ccgim_201']['id_utilisateur']);
+        $upds = $utilisateur->updateData13($propriete1,$nom,$propriete2,$prenom,$propriete3,$email,$propriete4,$ville,$propriete5,$phone,$propriete6,$isoPhone,$propriete7,$dialPhone,$propriete8,$postale,$propriete9,$banque,$propriete10,$contribuable,$propriete11,$mecano,$propriete12,$service,$propriete13,$slug,$_SESSION['_ccgim_202']['id_utilisateur']);
         if($upds > 0){
-            $data = $utilisateur->getUtilisateurById($_SESSION['_ccgim_201']['id_utilisateur'])->fetch();
+            $data = $utilisateur->getUtilisateurById($_SESSION['_ccgim_202']['id_utilisateur'])->fetch();
             $success['message'] = 'Votre profil a été mis à jour !!!';
         }
     }

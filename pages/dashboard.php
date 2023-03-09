@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['_ccgim_201'])){
+if(!isset($_SESSION['_ccgim_202'])){
     header('location:'.$domaine.'/connexion');
     exit();
 
@@ -14,7 +14,7 @@ $my_solde = number_format($montant['solde'],0 ,' ',' ').' <small>FCFA</small>';
 $token = openssl_random_pseudo_bytes(16);
 $token = bin2hex($token);
 $_SESSION['myformkey'] = $token;
-include_once $layout.'/auth/header.php'?>
+include_once $layout.'/header.php'?>
 
 <div class="container-fluid py-5 bg-gray-color pd-section">
     <div class="container py-5">

@@ -1,9 +1,9 @@
 <?php
 
 $arr_list = array('data' => array());
-if(isset($_SESSION['_ccgim_201'])  and isset($_SESSION['myformkey']) and isset($_POST['token']) and $_SESSION['myformkey'] == $_POST['token']){
+if(isset($_SESSION['_ccgim_202'])  and isset($_SESSION['myformkey']) and isset($_POST['token']) and $_SESSION['myformkey'] == $_POST['token']){
 
-$liste = $tresorerie->getPaiementByUserIdJoin($_SESSION['_ccgim_201']['id_utilisateur']);
+$liste = $tresorerie->getPaiementByUserIdJoin($_SESSION['_ccgim_202']['id_utilisateur']);
 while($dats = $liste->fetch()){
 
     $datLgts = $logement->getLogementById($dats['lgt_id'])->fetch();

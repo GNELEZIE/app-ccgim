@@ -1,11 +1,11 @@
 <?php
-if(!isset($_SESSION['_ccgim_201'])){
+if(!isset($_SESSION['_ccgim_202'])){
     header('location:'.$domaine.'/connexion');
     exit();
 
 }
 if(isset($doc[2]) and !isset($doc[3])){
-    $lgts = $logement->getLgtsSlugAndUser($_SESSION['_ccgim_201']['id_utilisateur'],$doc[2]);
+    $lgts = $logement->getLgtsSlugAndUser($_SESSION['_ccgim_202']['id_utilisateur'],$doc[2]);
     if($lgtDataLocal = $lgts->fetch()){
         if($lgtDataLocal['phone_lgt'] != ''){
             $isoPhone = $lgtDataLocal['iso_phone_lgt'];

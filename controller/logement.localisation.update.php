@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['_ccgim_201']) and isset($_POST['ville']) and isset($_POST['id']) and isset($_POST['qrt']) and isset($_POST['nom']) and isset($_POST['phone']) and isset($_SESSION['myformkey']) and isset($_POST['formkeyLocalisation']) and $_SESSION['myformkey'] == $_POST['formkeyLocalisation']){
+if(isset($_SESSION['_ccgim_202']) and isset($_POST['ville']) and isset($_POST['id']) and isset($_POST['qrt']) and isset($_POST['nom']) and isset($_POST['phone']) and isset($_SESSION['myformkey']) and isset($_POST['formkeyLocalisation']) and $_SESSION['myformkey'] == $_POST['formkeyLocalisation']){
     extract($_POST);
     $id = my_decrypt($id);
     $ville = htmlentities(trim(addslashes(strip_tags($ville))));

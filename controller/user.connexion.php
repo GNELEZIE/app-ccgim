@@ -10,7 +10,7 @@ if( isset($_SESSION['myformkey'])  and isset($_POST['email']) AND isset($_POST['
             if (password_verify($password, $data['mot_de_passe'])) {
                 if ($data['bloquer'] == 0) {
                     $userEmail = my_encrypt($data['email']);
-                    $_SESSION['_ccgim_201'] = $data;
+                    $_SESSION['_ccgim_202'] = $data;
                     if(isset($_POST['remember'])) {
                         setcookie('_ccgim_cookie', $userEmail, time() + 60 * 60 * 24 * 30, '/', $cookies_domaine, false, false);
                     }

@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_SESSION['_ccgim_201']) and isset($_POST['lgt']) and isset($_POST['noms']) and isset($_POST['prenom']) and isset($_POST['phone']) and isset($_SESSION['myformkey']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']){
+if(isset($_SESSION['_ccgim_202']) and isset($_POST['lgt']) and isset($_POST['noms']) and isset($_POST['prenom']) and isset($_POST['phone']) and isset($_SESSION['myformkey']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']){
     extract($_POST);
 
     $slug = create_slug($_POST['noms']);
@@ -34,8 +34,7 @@ if(isset($_SESSION['_ccgim_201']) and isset($_POST['lgt']) and isset($_POST['nom
     }else{
 
         $save = $utilisateur->addLocataire($dateGmt,$email,$slug,$lgt,$noms,$prenom,$isoPhone,$dialPhone,$phone,$mdpCript,$typeCompte);
-        echo 'ok';
-        exit;
+
         if($save > 0){
             echo 'ok';
         }

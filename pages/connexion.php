@@ -9,7 +9,7 @@ require_once $controller.'/user.connexion.php';
 $token = openssl_random_pseudo_bytes(16);
 $token = bin2hex($token);
 $_SESSION['myformkey'] = $token;
-include_once $layout.'/auth/header2.php'
+include_once $layout.'/header.php'
 ?>
 
 
@@ -18,11 +18,11 @@ include_once $layout.'/auth/header2.php'
             <div class="row">
                 <div class="col-md-6 offset-3">
                     <form class="cd-form  bg-white-color" method="post" id="loginForm">
-                        <div class="text-center pb-5">
-                            <a href="<?=$domaine?>">
-                                <img src="<?=$cdn_domaine?>/media/log01.png" class="myLogoAuth" alt="Logo" />
+                        <!--<div class="text-center pb-5">
+                            <a href="<?/*=$domaine*/?>">
+                                <img src="<?/*=$cdn_domaine*/?>/media/log01.png" class="myLogoAuth" alt="Logo" />
                             </a>
-                        </div>
+                        </div>-->
                         <h2 class="text-center m-0"> <i class="fa fa-user"></i> Connexion </h2>
                         <?php if(!empty($errors)){ ?>
                             <div class="alert alert-danger alert-pd" style="font-size: 13px" role="alert">
@@ -66,7 +66,7 @@ include_once $layout.'/auth/header2.php'
     </div>
 
 
-<?php include_once $layout.'/auth/footer.php'?>
+<?php include_once $layout.'/footer.php'?>
 <script>
     $(document).ready(function(){
         $('#loginForm').submit(function(){

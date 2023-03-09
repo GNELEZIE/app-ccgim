@@ -38,7 +38,7 @@ a , p ,h1,h2,h3,h4,h5{
 .header-bottom-content.style-two .top-navigation .menu-list > li > a {
     letter-spacing: normal;
     text-transform: inherit;
-    padding: 10px 10px;
+    padding: 10px 20px;
     font-weight:normal;
 }
 
@@ -1325,22 +1325,6 @@ label {
     .bg-services {
         padding: 0;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['_ccgim_201']) and isset($_POST['id']) and isset($_POST['prix_regulier'])  and isset($_SESSION['myformkey']) and isset($_POST['formkeyTarifs']) and $_SESSION['myformkey'] == $_POST['formkeyTarifs']){
+if(isset($_SESSION['_ccgim_202']) and isset($_POST['id']) and isset($_POST['prix_regulier'])  and isset($_SESSION['myformkey']) and isset($_POST['formkeyTarifs']) and $_SESSION['myformkey'] == $_POST['formkeyTarifs']){
     extract($_POST);
 
     $id = my_decrypt($id);

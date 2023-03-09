@@ -1,9 +1,9 @@
 <?php
 
 $arr_list = array('data' => array());
-if(isset($_SESSION['_ccgim_201'])  and isset($_SESSION['myformkey']) and isset($_POST['token']) and $_SESSION['myformkey'] == $_POST['token']){
+if(isset($_SESSION['_ccgim_202'])  and isset($_SESSION['myformkey']) and isset($_POST['token']) and $_SESSION['myformkey'] == $_POST['token']){
 
-$liste = $location->getLocationByAuthId($_SESSION['_ccgim_201']['id_utilisateur']);
+$liste = $location->getLocationByAuthId($_SESSION['_ccgim_202']['id_utilisateur']);
 while($dats = $liste->fetch()){
 
     $toDay = date('Y-m');

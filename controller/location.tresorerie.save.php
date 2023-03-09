@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_SESSION['_ccgim_201']) and isset($_POST['type_transac']) and isset($_POST['maison']) and isset($_POST['libelle']) and isset($_SESSION['myformkey']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']){
+if(isset($_SESSION['_ccgim_202']) and isset($_POST['type_transac']) and isset($_POST['maison']) and isset($_POST['libelle']) and isset($_SESSION['myformkey']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']){
     extract($_POST);
 
     $type_transac = htmlentities(trim(addslashes(strip_tags($type_transac))));
@@ -16,7 +16,7 @@ if(isset($_SESSION['_ccgim_201']) and isset($_POST['type_transac']) and isset($_
         if($type_transac == 1){
             $debit = $montant;
             $credit = 0;
-            $save = $tresorerie->addOperation($dateGmt,$_SESSION['_ccgim_201']['id_utilisateur'],$maison,$type_transac,$libelle,$debit,$credit);
+            $save = $tresorerie->addOperation($dateGmt,$_SESSION['_ccgim_202']['id_utilisateur'],$maison,$type_transac,$libelle,$debit,$credit);
             if($save > 0){
                 echo 'ok';
             }
@@ -27,7 +27,7 @@ if(isset($_SESSION['_ccgim_201']) and isset($_POST['type_transac']) and isset($_
             $solde = $tresorerie->getSoldeTotal()->fetch();
 
             if($montant <= $solde['solde']){
-                $save = $tresorerie->addOperation($dateGmt,$_SESSION['_ccgim_201']['id_utilisateur'],$maison,$type_transac,$libelle,$debit,$credit);
+                $save = $tresorerie->addOperation($dateGmt,$_SESSION['_ccgim_202']['id_utilisateur'],$maison,$type_transac,$libelle,$debit,$credit);
                 if($save > 0){
                     echo 'ok';
                 }

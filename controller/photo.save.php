@@ -1,10 +1,10 @@
 <?php
-if(isset($_SESSION['_ccgim_201']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']){
+if(isset($_SESSION['_ccgim_202']) and isset($_POST['formkey']) and $_SESSION['myformkey'] == $_POST['formkey']){
     $data_info = '';
     $data_photo = '';
     extract($_POST);
 
-    $res = $utilisateur->getUtilisateurById($_SESSION['_ccgim_201']['id_utilisateur'])->fetch();
+    $res = $utilisateur->getUtilisateurById($_SESSION['_ccgim_202']['id_utilisateur'])->fetch();
 
     $ex_photo = $res['photo'];
     if(empty($_FILES['userImg']['name'])){
@@ -29,9 +29,9 @@ if(isset($_SESSION['_ccgim_201']) and isset($_POST['formkey']) and $_SESSION['my
             }
         }
     }
-    $update = $utilisateur->updateUtilisateurPhoto($photo,$_SESSION['_ccgim_201']['id_utilisateur']);
+    $update = $utilisateur->updateUtilisateurPhoto($photo,$_SESSION['_ccgim_202']['id_utilisateur']);
     if($update >0){
-        $data = $utilisateur->getUtilisateurById($_SESSION['_ccgim_201']['id_utilisateur'])->fetch();
+        $data = $utilisateur->getUtilisateurById($_SESSION['_ccgim_202']['id_utilisateur'])->fetch();
         $data_info = 'ok';
         $data_photo = $cdn_domaine.'/media/users/'.$data['photo'];
     }

@@ -11,7 +11,7 @@ if(isset($_GET)){
     $page = $lien;
 }
 if($lien =='' || $lien =='index'){
-    $lien = 'home';
+    $lien = 'dashboard';
     $page = $lien;
 }else{
     $page = $lien;
