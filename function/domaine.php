@@ -1,7 +1,7 @@
 <?php
-$domaine = 'https://app.cabinet-ccgim.com';
-$cdn_domaine = 'https://app.cabinet-ccgim.com/cdn';
+$domaine = 'http://localhost:8080/www/app-ccgim';
+$cdn_domaine = 'http://localhost:8080/www/app-ccgim/cdn';
 
-$site_domaine = 'https://cabinet-ccgim.com';
-$cdn_domaine = 'https://cabinet-ccgim.com/cdn';
-$cookies_domaine = '.app.cabinet-ccgim.com';
+$site_domaine = 'http://localhost:8080/www/ccgim-v-2';
+$site_cdn = 'http://localhost:8080/www/ccgim-v-2/cdn';
+$cookies_domaine = '.localhost:8080';

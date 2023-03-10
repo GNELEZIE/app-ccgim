@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="site-logo">
-                    <a href="<?=$domaine?>">
+                    <a href="<?=$site_domaine?>">
                         <img src="<?=$cdn_domaine?>/media/log01.png" class="myLogo" alt="Logo" />
                     </a>
                 </div>
@@ -17,7 +17,7 @@
                                     <a href="<?=$site_domaine?>" class="<?php if($lien == 'home' || $lien == ''){echo 'active';} ;?>">Accueil</a>
                                 </li>
                                 <li>
-                                    <a href="<?=$domaine?>/a-propos" class="<?= page_active('a-propos') ;?>">A propos</a>
+                                    <a href="<?=$site_domaine?>/a-propos" class="<?= page_active('a-propos') ;?>">A propos</a>
                                 </li>
                                 <li>
                                     <a href="<?=$site_domaine?>/services" class="<?= page_active('services') ;?>">Services</a>
@@ -34,7 +34,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="<?=$site_domaine?>/inscription" class="<?= page_active('logements') ;?>">Inscription</a>
+                                    <a href="<?=$domaine?>/inscription" class="<?= page_active('logements') ;?>">Inscription</a>
                                 </li>
                                 <li>
                                     <a href="<?=$site_domaine?>/contacts" class="<?= page_active('contacts') ;?>">Contacts</a>
