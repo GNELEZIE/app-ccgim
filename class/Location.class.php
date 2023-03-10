@@ -8,7 +8,21 @@ class Location
     }
 
     //Create
-
+    public function addLocation($userDate,$userId,$lgtId){
+        $query = "INSERT INTO location(date_location,user_id,lgt_id)
+            VALUES (:userDate,:userId,:lgtId)";
+        $rs = $this->bdd->prepare($query);
+        $rs->execute(array(
+            "userDate" => $userDate,
+            "userId" => $userId,
+            "lgtId" => $lgtId
+        ));
+        $nb = $rs->rowCount();
+        if($nb > 0){
+            $r = $this->bdd->lastInsertId();
+            return $r;
+        }
+    }
     public function addLocataire($userDate,$nom,$prenom,$slug,$bail,$isoPhone,$dialPhone,$phone,$lgtId){
         $query = "INSERT INTO locataire(date_locataire,nom,prenom,slug,bail,iso_phone,dial_phone,phone,lgt_id)
             VALUES (:userDate,:nom,:prenom,:slug,:bail,:isoPhone,:dialPhone,:phone,:lgtId)";

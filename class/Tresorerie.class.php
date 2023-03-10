@@ -9,9 +9,9 @@ class Tresorerie
 
     //Create
 
-    public function addOperation($dateOperation,$idUser,$lgtsId,$typeOp,$libelle,$debit,$credit){
-        $query = "INSERT INTO tresorerie(date_tresorerie,user_id ,lgts_id,type_transac,libelle_transac,debit_transac,credit_transac,ref_paiement)
-            VALUES (:dateOperation,:idUser,:lgtsId,:typeOp,:libelle,:debit,:credit,:refPaiement)";
+    public function addOperation($dateOperation,$idUser,$lgtsId,$typeOp,$libelle,$debit,$credit,$auth){
+        $query = "INSERT INTO tresorerie(date_tresorerie,user_id ,lgts_id,type_transac,libelle_transac,debit_transac,credit_transac,ref_paiement,auth)
+            VALUES (:dateOperation,:idUser,:lgtsId,:typeOp,:libelle,:debit,:credit,:refPaiement,:auth)";
         $rs = $this->bdd->prepare($query);
         $rs->execute(array(
             "dateOperation" => $dateOperation,
@@ -21,7 +21,8 @@ class Tresorerie
             "libelle" => $libelle,
             "debit" => $debit,
             "credit" => $credit,
-            "refPaiement" => $this->refPaiement()
+            "refPaiement" => $this->refPaiement(),
+            "auth" => $auth
         ));
 
         $nb = $rs->rowCount();
@@ -31,7 +32,29 @@ class Tresorerie
             return $r;
         }
     }
+    public function RetraitOperation($dateOperation,$idUser,$lgtsId,$typeOp,$libelle,$debit,$credit,$auth){
+        $query = "INSERT INTO tresorerie(date_tresorerie,user_id ,lgts_id,type_transac,libelle_transac,debit_transac,credit_transac,ref_paiement,auth)
+            VALUES (:dateOperation,:idUser,:lgtsId,:typeOp,:libelle,:debit,:credit,:refPaiement,:auth)";
+        $rs = $this->bdd->prepare($query);
+        $rs->execute(array(
+            "dateOperation" => $dateOperation,
+            "idUser" => $idUser,
+            "lgtsId" => $lgtsId,
+            "typeOp" => $typeOp,
+            "libelle" => $libelle,
+            "debit" => $debit,
+            "credit" => $credit,
+            "refPaiement" => $this->refPaiement(),
+            "auth" => $auth
+        ));
 
+        $nb = $rs->rowCount();
+
+        if($nb > 0){
+            $r = $this->bdd->lastInsertId();
+            return $r;
+        }
+    }
 
 //Read
     public function getPaiementHistoByUser($userId){
@@ -69,6 +92,19 @@ class Tresorerie
 
         return $rs;
     }
+
+    public function getPaiementByAuthIdJoin($userId){
+        $query = "SELECT * FROM tresorerie
+         INNER JOIN logement ON id_logement = lgts_id
+        WHERE auth =:userId  ORDER BY id_tresorerie DESC";
+        $rs = $this->bdd->prepare($query);
+        $rs->execute(array(
+            "userId" => $userId
+        ));
+
+        return $rs;
+    }
+
 
     public function getPaiementByUserIdJoin($userId){
         $query = "SELECT * FROM tresorerie
@@ -111,7 +147,8 @@ class Tresorerie
         $rs = $this->bdd->query($query);
         return $rs;
     }
-  public function getPaiementByUser($userId){
+
+    public function getPaiementByUser($userId){
         $query = "SELECT * FROM tresorerie
         INNER JOIN  locataire ON id_locataire  = user_id
         WHERE user_id =:userId
@@ -141,7 +178,7 @@ class Tresorerie
     public function getSoldeTotalByProprietaire($propId){
         $query = "SELECT SUM(debit_transac) - SUM(credit_transac) as solde FROM tresorerie
                    INNER JOIN logement ON id_logement = lgts_id
-                  WHERE utilisateur_id =:propId";
+                  WHERE auth =:propId";
         $rs = $this->bdd->prepare($query);
         $rs->execute(array(
             "propId" => $propId
@@ -165,7 +202,16 @@ class Tresorerie
 
 
 
+    public function getSoldeByProprietaire($userId){
+        $query = "SELECT SUM(debit_transac) - SUM(credit_transac) as solde FROM tresorerie
+                  WHERE auth =:userId";
+        $rs = $this->bdd->prepare($query);
+        $rs->execute(array(
+            "userId" => $userId
+        ));
 
+        return $rs;
+    }
 
     public function getSoldeTotal(){
         $query = "SELECT SUM(debit_transac) - SUM(credit_transac) as solde FROM tresorerie";

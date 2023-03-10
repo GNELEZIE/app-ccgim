@@ -3,10 +3,10 @@
 $arr_list = array('data' => array());
 if(isset($_SESSION['_ccgim_202'])  and isset($_SESSION['myformkey']) and isset($_POST['token']) and $_SESSION['myformkey'] == $_POST['token']){
 
-$liste = $tresorerie->getPaiementByUserIdJoin($_SESSION['_ccgim_202']['id_utilisateur']);
+$liste = $tresorerie->getPaiementByAuthIdJoin($_SESSION['_ccgim_202']['id_utilisateur']);
 while($dats = $liste->fetch()){
 
-    $datLgts = $logement->getLogementById($dats['lgt_id'])->fetch();
+
     $test = 1;
     if($dats['type_transac'] == 1){
         $debit = $dats['debit_transac'];
@@ -22,7 +22,7 @@ while($dats = $liste->fetch()){
     $action = '<a href="'.$domaine.'/facture/'.$dats['ref_paiement'].'" class="btn-voir"> <i class="fa fa-print"></i></a>';
     $arr_list['data'][] = array(
         date_fr($dats['date_tresorerie']),
-        html_entity_decode(stripslashes($datLgts["nom_lgt"])),
+        html_entity_decode(stripslashes($dats["nom_lgt"])),
         html_entity_decode(stripslashes($dats["libelle_transac"])),
         $montant,
         $action

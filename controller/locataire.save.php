@@ -4,13 +4,14 @@ if(isset($_SESSION['_ccgim_202']) and isset($_POST['lgt']) and isset($_POST['nom
     extract($_POST);
 
     $slug = create_slug($_POST['noms']);
+
     $lgt = htmlentities(trim(addslashes(strip_tags($lgt))));
     $noms = htmlentities(trim(addslashes(strip_tags($noms))));
     $prenom = htmlentities(trim(addslashes(strip_tags($prenom))));
     $phone = htmlentities(trim(addslashes(strip_tags($phone))));
     $isoPhone = htmlentities(trim(addslashes(strip_tags($isoPhone))));
     $dialPhone = htmlentities(trim(addslashes(strip_tags($dialPhone))));
-    $email = htmlentities(trim(addslashes(strip_tags($email))));
+
     $propriety = 'nom';
 
     $verifSlug = $utilisateur->verifUtilisateur($propriety,$noms);
@@ -18,8 +19,9 @@ if(isset($_SESSION['_ccgim_202']) and isset($_POST['lgt']) and isset($_POST['nom
     $rsSlug = $verifSlug->fetch();
     $nbSlug =$verifSlug->rowCount();
     $typeCompte = 1;
-    $password = '123456789';
+    $password = $phone;
 
+    $email = 'locataire@cabinet-ccgim.com';
     $options = ['cost' => 12];
     $mdpCript = password_hash($password, PASSWORD_BCRYPT, $options);
 
@@ -27,17 +29,10 @@ if(isset($_SESSION['_ccgim_202']) and isset($_POST['lgt']) and isset($_POST['nom
         $slug = $slug.'-'.$nbSlug;
     }
 
-    $user = $utilisateur->getUtilisateurByEmail($email);
+    $save = $utilisateur->addLocataire($dateGmt,$email,$slug,$noms,$prenom,$isoPhone,$dialPhone,$phone,$mdpCript,$typeCompte);
 
-    if($user > 0){
-        echo '1';
-    }else{
-
-        $save = $utilisateur->addLocataire($dateGmt,$email,$slug,$lgt,$noms,$prenom,$isoPhone,$dialPhone,$phone,$mdpCript,$typeCompte);
-
-        if($save > 0){
-            echo 'ok';
-        }
+    if($save > 0){
+        $savaLaction = $location->addLocation($dateGmt,$save,$lgt);
+        echo 'ok';
     }
-
 }

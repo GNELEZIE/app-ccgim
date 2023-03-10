@@ -12,7 +12,7 @@ if(isset($_SESSION['_ccgim_202']) and isset($_POST['userId']) and isset($_POST['
     if($lgtDat = $lgt->fetch()){
         $debit = $lgtDat['tarif'];
         $credit = 0;
-        $save = $tresorerie->addOperation($dateGmt,$userId,$lgt_id,$type_transac,$libelle,$debit,$credit);
+        $save = $tresorerie->addOperation($dateGmt,$userId,$lgt_id,$type_transac,$libelle,$debit,$credit,$_SESSION['_ccgim_202']['id_utilisateur']);
         if($save > 0){
             echo 'ok';
         }

@@ -16,7 +16,7 @@ $datLo = $utilisateur->getLocataireBySlug($doc[2]);
 $token = openssl_random_pseudo_bytes(16);
 $token = bin2hex($token);
 $_SESSION['myformkey'] = $token;
-include_once $layout.'/auth/header.php'?>
+include_once $layout.'/header.php'?>
 
 <div class="container-fluid py-5 bg-gray-color pd-section">
     <div class="container py-5">
@@ -272,31 +272,34 @@ include_once $layout.'/auth/header.php'?>
                             </div>
                         </div>
                     </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="form-group">
-                          <label class="" for="phone">Téléphone <i class="required"></i></label>
-                          <input type="tel" class="form-control input-style input-height40" name="phone" id="phone"  style="padding: 7px 15px 7px 45px !important;" >
-                          <input type="hidden"  name="isoPhone" id="isoPhone">
-                          <input type="hidden"  name="dialPhone" id="dialPhone">
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="form-group">
-                          <label for="email" >Email</label>
-                          <input class="form-control input-style input-height40" name="email" id="email" type="email"  placeholder="Email" required>
-                      </div>
-                  </div>
-                  <!--<div class="col-md-12">
-                      <div class="form-group">
-                          <label for="date">Date <i class="required"></i></label>
-                          <input class="form-control input-style input-height40" name="date" id="date" type="date"  placeholder="Date">
-                      </div>
-                  </div>-->
-              </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="" for="phone">Téléphone <i class="required"></i></label>
+                                <input type="tel" class="form-control input-style input-height40" name="phone" id="phone"  style="padding: 7px 15px 7px 45px !important;" >
+                                <input type="hidden"  name="isoPhone" id="isoPhone">
+                                <input type="hidden"  name="dialPhone" id="dialPhone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="bail" >N° Bail</label>
+                                <select class="wide form-control input-style input-height40" name="bail" id="bail">
+                                    <option  selected>Choisir une N° Bail</option>
+                                    <option value="Complement bail">Complement bail</option>
+                                    <option value="Policier">Policier</option>
+                                    <option value="Gendarme">Gendarme</option>
+                                    <option value="Civil">Civil</option>
+                                    <option value="Garde pénitentiaire">Garde pénitentiaire</option>
+                                    <option value="Eaux et forêts">Eaux et forêts</option>
+                                    <option value="Marin">Marin</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="modal-footer">
-
                     <input type="hidden" class="form-control" name="formkey" value="<?=$token?>">
                     <a href="javascript:void(0);" class="btn btn-red-transparent btn-closed" data-dismiss="modal">Annuler</a>
                     <button  class="btn btn-add-locataire"> <i class="loaderAddBtn"></i> <i class="fa fa-plus"></i> Ajouter</button>

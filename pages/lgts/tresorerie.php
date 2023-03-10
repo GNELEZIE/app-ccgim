@@ -8,7 +8,7 @@ $token = openssl_random_pseudo_bytes(16);
 $token = bin2hex($token);
 $_SESSION['myformkey'] = $token;
 
-include_once $layout.'/auth/header.php'?>
+include_once $layout.'/header.php'?>
 
 <div class="container-fluid py-5 bg-gray-color pd-section">
     <div class="container py-5">
@@ -33,6 +33,17 @@ include_once $layout.'/auth/header.php'?>
                                 <a class="btn-add-payer" href="#" data-toggle="modal"  data-target="#payerModalCenter"> <i class="fa fa-plus"></i> Ajouter un paiment</a>
                             </div>
                             <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <div class="ts-box-green mb10">
+                                    <div class="icon">
+                                        <i class="fa fa-wallet myicon-trend my-icon-dashboard-green"></i>
+                                    </div>
+                                    <div class="nbLgt">
+                                        <h2 class="my_solde"></h2>
+                                        <p>Solde total</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="pc-none position-relative">
                             <h3 class="titre-mobile">Liste des paiements</h3>
@@ -77,43 +88,20 @@ include_once $layout.'/auth/header.php'?>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLongTitle">Espace de paiment <span class="nom" id="nom"></span></h2>
+                <h2 class="modal-title" id="exampleModalLongTitle">Faire une sortie de caisse <span class="nom" id="nom"></span></h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="formPayer">
+            <form method="post" id="formSortieCaisse">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="type_transac">Type d'opération <i class="required"></i></label>
-                        <select class="wide form-control no-nice-select-search-box input-style input-height select-transac" name="type_transac" id="type_transac" required>
-                            <option value="" selected>Type d'opération</option>
-                            <option value="1">Paiement de loyer</option>
-                            <option value="2">Sortie de caisse</option>
-                        </select>
-                    </div>
-                    <div class="form-group locataire-input remove-none">
-                        <label for="maison" class="pt13">Maison <i class="required"></i></label>
-                        <select class="wide form-control input-style input-height select-maison" name="maison" id="maison" required>
-                            <option value="" selected>Choisir une maison</option>
-                            <?php
-                            $listLoc = $location->getLocationByLgts($_SESSION['_ccgim_202']['id_utilisateur']);
-                            while($dataLocataire = $listLoc->fetch()){
-                            ?>
-                            <option value="<?=$dataLocataire['id_logement']?>"><?=html_entity_decode(stripslashes($dataLocataire['nom_lgt'])).'('.$dataLocataire['quartier_lgt'].')'?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
                     <div class="form-group">
                         <label for="libelle" class="pd15">Libellé</label>
                         <input type="text" class="form-control input-style input-height" name="libelle" id="libelle" placeholder="Libellé" required>
                     </div>
-                    <div class="my_prix"></div>
                     <div class="form-group">
                         <label for="montant" >Montant <i class="required"></i></label>
-                        <input type="text" class="form-control input-style input-height" name="montant" id="montant" placeholder="Montant" required disabled/>
+                        <input type="text" class="form-control input-style input-height" name="montant" id="montant" placeholder="Montant" required/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -314,7 +302,42 @@ include_once $layout.'/auth/header.php'?>
         });
 
 
+        $('#formSortieCaisse').submit(function(e){
+            e.preventDefault();
+            var value = document.getElementById('formSortieCaisse');
+            var form = new FormData(value);
 
+            $.ajax({
+                method: 'post',
+                url: '<?=$domaine?>/controle/sortiecaisse.save',
+                data: form,
+                contentType:false,
+                cache:false,
+                processData:false,
+                success: function(data){
+                    if(data == 'ok'){
+                        $('#locataire').val('');
+                        $('#libelle').val('');
+                        $('#montant').val('');
+                        chargeSolde();
+                        table_tresorerie.ajax.reload(null,false);
+                        $(".loaderBtnPay").html('');
+                        swal("Le paiement a été ajouté avec succès !","", "success");
+                    }else if(data == 'solde'){
+                        $(".loaderBtnPay").html('');
+                        swal("Action Impossible !", "Votre solde est insuffisant !", "error");
+                    }
+                    else{
+                        swal("Action Impossible !", "Une erreur s\'est produite.", "error");
+                        $(".loaderBtnPay").html('');
+                    }
+                },
+                error: function (error, ajaxOptions, thrownError) {
+                    alert(error.responseText);
+                }
+            });
+
+        });
 
 
     })

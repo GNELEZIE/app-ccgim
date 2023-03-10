@@ -30,7 +30,7 @@ $lgst = $logement->getLogementByUser($_SESSION['_ccgim_202']['id_utilisateur'],$
 
 
 
-include_once $layout.'/auth/header.php'?>
+include_once $layout.'/header.php'?>
 
     <div class="container-fluid py-5 bg-gray-color pd-section">
         <div class="container py-5">
@@ -311,7 +311,7 @@ include_once $layout.'/auth/header.php'?>
 
 
 
-<?php include_once $layout.'/auth/footer.php'?>
+<?php include_once $layout.'/footer.php'?>
 <script>
     $(document).ready(function() {
         var owl = $('.owl-carousel');
