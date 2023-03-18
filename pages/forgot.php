@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['_ccgim_201'])){
+if(isset($_SESSION['_ccgim_202'])){
     header('location:'.$domaine.'/compte/dashboard');
     exit();
 }
