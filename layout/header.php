@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/css/btn.css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/css/font-size.css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/css/padding.css">
-    <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/sweetalert/sweetalert.css" type="text/css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/datatable/datatables.min.css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/intltelinput/css/intlTelInput.min.css"/>
@@ -29,6 +28,7 @@
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/datatable/datatables.min.css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/font-awesome/css/all.css">
     <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/font-awesome/css/v4-shims.css">
+    <link rel="stylesheet" href="<?=$cdn_domaine?>/assets/libs/sweetalert/sweetalert.css" type="text/css">
 <!--    <link rel="stylesheet" href="--><?//=$cdn_domaine?><!--/assets/css/wizard-style.css">-->
     <style>
 
@@ -52,6 +52,16 @@
         }
         .btn-register:hover{
             background: #158cd1;
+        }
+        .btn-valider{
+            background: #1cab34;
+            color: #fff !important;
+            width: 100% !important;;
+            display: inherit !important;
+            padding: 7px;
+        }
+        .btn-valider:hover{
+            background: #1cab34 ;
         }
         .title1{
             position: absolute;
@@ -439,7 +449,7 @@
 
         .owl-carousel .owl-nav button.owl-prev{
             position: absolute;
-            top: 77px;
+            top: 47%;
             left: 5px;
             background: #00000057;
             padding: 5px 13px !important;
@@ -449,7 +459,7 @@
         }
        .owl-carousel .owl-nav button.owl-next{
             position: absolute;
-            top: 77px;
+            top: 47%;
             right: 5px;
             background: #00000057 !important;
             padding: 5px 13px !important;
@@ -1275,6 +1285,9 @@
             padding: 16px 15px;
             border-radius: 50px;
             font-size: 15px;
+        }
+        .text-center{
+            text-align: center !important;
         }
 
 

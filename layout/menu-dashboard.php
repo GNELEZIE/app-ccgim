@@ -1,5 +1,5 @@
 <?php
-$n_b = $logement->getNblogements()->fetch();
+$n_b = $logement->getNblogementsByUser($_SESSION['_ccgim_202']['id_utilisateur'])->fetch();
 $n_loc = $locataire->getNbLocataire()->fetch();
 
 if($data['type_compte'] == 1){

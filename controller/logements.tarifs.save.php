@@ -3,6 +3,7 @@ if(isset($_SESSION['_ccgim_202']) and isset($_POST['id']) and isset($_POST['prix
     extract($_POST);
 
     $id = my_decrypt($id);
+
     $prix_regulier = htmlentities(trim(addslashes(strip_tags($prix_regulier))));
     $prix_promo = htmlentities(trim(addslashes(strip_tags($prix_promo))));
     $prix_regulier = v_p($prix_regulier);
@@ -13,8 +14,14 @@ if(isset($_SESSION['_ccgim_202']) and isset($_POST['id']) and isset($_POST['prix
     $propriete1= 'tarif';
     $propriete2= "remise";
     $propriete3= "nb_upd";
+    $proprio = $dataSlug['nom_agent'];
+    $email = $_SESSION['_ccgim_202']['email'];
+    $slg = $dataSlug['slug_lgt'];
     $update = $logement->updateData3($propriete1,$prix_regulier,$propriete2,$prix_promo,$propriete3,$nbUpd,$dataSlug['id_logement']);
     if($update > 0){
+        $subject = trim('Nouveau logement');
+        include_once $mail.'/news-lgt.php';
+        sendMailToMes($email,$subject, $message);
         header('location:' . $domaine . '/compte/succes');
     }
     $tab = array(

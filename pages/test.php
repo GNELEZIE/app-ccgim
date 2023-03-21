@@ -1,15 +1,5 @@
-<div class="row pc-none">
-    <div class="col-md-3 mycol50">
 
-    </div>
-    <div class="col-md-3 mycol50">
+<?php
 
-    </div>
-
-    <div class="col-md-3 mycol50">
-
-    </div>
-    <div class="col-md-3 mycol50">
-
-    </div>
-</div>
+$tst = sendMailToMes('zie.nanien@gmail.com','Tester','Message');
+echo $tst;

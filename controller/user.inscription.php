@@ -7,6 +7,11 @@ if(isset($_POST['email']) and isset($_POST['password']) and isset($_POST['typ_co
     $password = htmlentities(trim(addslashes($password)));
     $cpassword = htmlentities(trim(addslashes($cpassword)));
 
+    if($typ_compte == 1){
+        $typ = 'locataire';
+    }else{
+        $typ = 'propriétaire';
+    }
     $verifMail = $utilisateur->getUtilisateurByEmail($email);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['register'] = 'Votre adresse email n\'est pas correct';
@@ -21,13 +26,12 @@ if(isset($_POST['email']) and isset($_POST['password']) and isset($_POST['typ_co
         $mdpCript = password_hash($password, PASSWORD_BCRYPT, $options);
         $idUser = $utilisateur->addUtilisateur($dateGmt, $email, $mdpCript,$typ_compte);
         if ($idUser > 0) {
-           /* $mailToken = str_replace('+', '-', my_encrypt($email));
-            $subject = trim('Vérification de votre email.');
-            include_once $email.'/valid-email.php';
-            sendMailNoReply($email, $subject, $message);*/
+            $subject = trim('Une nouvelle inscription.');
+            include_once $mail.'/news-email.php';
+            sendMailToMes($email,$subject, $message);
             $result = $utilisateur->getUtilisateurByEmail($email);
             if ($data = $result->fetch()) {
-                $_SESSION['_ccgim_201'] = $data;
+                $_SESSION['_ccgim_202'] = $data;
                 header('location:' .$domaine.'/compte/profil');
             }
         } else {

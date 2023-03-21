@@ -167,6 +167,19 @@ class Logement{
 
     //Update
 
+    public function updateData($propriete1,$val1,$id){
+        $query = "UPDATE logement
+            SET $propriete1 = :val1
+            WHERE id_logement = :id";
+        $rs = $this->bdd->prepare($query);
+        $rs->execute(array(
+            "val1" => $val1,
+            "id" => $id
+        ));
+
+        $nb = $rs->rowCount();
+        return $nb;
+    }
     public function updateData3($propriete1,$val1,$propriete2,$val2,$propriete3,$val3,$id){
         $query = "UPDATE logement
             SET $propriete1 = :val1, $propriete2 = :val2, $propriete3 = :val3
@@ -182,6 +195,8 @@ class Logement{
         $nb = $rs->rowCount();
         return $nb;
     }
+
+
     public function updateData4($propriete1,$val1,$propriete2,$val2,$propriete3,$val3,$propriete4,$val4,$id){
         $query = "UPDATE logement
             SET $propriete1 = :val1, $propriete2 = :val2, $propriete3 = :val3, $propriete4 = :val4
