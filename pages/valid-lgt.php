@@ -70,8 +70,20 @@ include_once $layout.'/header.php'?>
                 </div>
             </div>
 
-            <div class="col-md-3 text-center">
-                <a href="javascript:void(0);" class=" btn-valider button-radius" onclick="validLgt(<?=$DataLg['id_logement']?>)" >Valider le logement</a>
+            <div class="col-md-3 text-center ">
+                <div class="vali">
+                    <?php
+                    if($DataLg['pub'] == 0){
+                        ?>
+                        <a href="javascript:void(0);" class=" btn-valider button-radius" onclick="validLgt(<?=$DataLg['id_logement']?>)" >Valider le logement</a>
+                    <?php
+                    }else{
+                        ?>
+                        <span class="badge-green">Logement validé</span>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>
@@ -83,8 +95,8 @@ include_once $layout.'/header.php'?>
     function validLgt(id = null){
         if(id){
             swal({
-                title: 'Souhaitez-vous mettre cette commande en livrée ?',
-                text: "L'action mettra l'élément sélectionné en livrée.",
+                title: 'Voulez-vous valider les informations de ce logement ?',
+                text: "L'action mettra le logement en ligne.",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: "#2ab57d",
@@ -93,9 +105,10 @@ include_once $layout.'/header.php'?>
                 reverseButtons: true
             }).then(function(result){
                 if (result.value){
-                    $.post('<?=$domaine?>/controle/commande.livree', {id : id, token : '<?=$token?>'}, function (data) {
+                    $.post('<?=$domaine?>/controle/lgt.valider', {id : id, token : '<?=$token?>'}, function (data) {
                         if(data == "ok"){
                             swal("Opération effectuée!","", "success");
+                            $('.vali').html('<span class="badge-green">Logement validé</span>');
                         }else{
                             swal("Impossible de supprimer!", "Une erreur s'est produite lors du traitement des données.", "error");
                         }

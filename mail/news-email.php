@@ -205,7 +205,7 @@ $message = '
                                 </tr>
                                <tr>
                                     <td class="content-block" itemprop="handler" itemscope itemtype="https://schema.org/HttpActionHandler" valign="top">
-                                        <a href="'.$domaine.'/compte/inscrits" class="btn-primary" itemprop="url">Voir la liste des inscrits</a>
+                                        <a href="https://admin.cabinet-ccgim.com/compte/inscrits" class="btn-primary" itemprop="url">Voir la liste des inscrits</a>
                                     </td>
                                 </tr>
 

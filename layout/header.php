@@ -1289,8 +1289,15 @@
         .text-center{
             text-align: center !important;
         }
-
-
+        .p-0{
+            padding: 0 !important;
+        }
+        .line-heights .nice-select {
+            line-height: 42px !important;
+        }
+        .lineForm .hide-password {
+            top: 73% !important;
+        }
 
 
         @media(max-width: 767px) {

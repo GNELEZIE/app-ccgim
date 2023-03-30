@@ -17,7 +17,7 @@ include_once $layout.'/header.php'
     <div class="container py-5">
         <div class="row">
             <div class="col-md-6 offset-3">
-                <form class="cd-form  bg-white-color" method="post" id="formRegister">
+                <form class="cd-form lineForm bg-white-color" method="post" id="formRegister">
                     <!--<div class="text-center pb-5">
                         <a href="<?/*=$domaine*/?>">
                             <img src="<?/*=$cdn_domaine*/?>/media/log01.png" class="myLogoAuth" alt="Logo" />
@@ -35,7 +35,7 @@ include_once $layout.'/header.php'
                         <label class="" for="email">E-mail <i class="required"></i></label>
                         <input class="full-width has-padding has-border" name="email" id="email" type="email" placeholder="E-mail" required>
                     </div>
-                    <div class="form-content">
+                    <div class="form-content line-heights">
                         <div class="form-group p-0">
                             <label for="typ_compte" class="pb7">Type de compte</label>
                             <select class="wide no-nice-select-search-box full-width has-border" name="typ_compte" id="typ_compte">
